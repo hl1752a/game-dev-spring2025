@@ -3,16 +3,21 @@ using UnityEngine;
 public class ballScript : MonoBehaviour
 {
     public Rigidbody ball;
+    public Vector3 preVolocity;
+
+    public GameObject gDir;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball.AddForce(5f, 5f, 0, ForceMode.Impulse);
+        ball.AddForce(5f, -5f, 0, ForceMode.Impulse);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        preVolocity = ball.linearVelocity;
+        ball.AddForce(gDir.transform.forward.normalized * 0.15f, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,5 +26,25 @@ public class ballScript : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("paddle"))
+        {
+            float contactX = collision.GetContact(0).point.x;
+            float paddleX = collision.gameObject.transform.position.x;
+            float paddleLength = collision.gameObject.transform.localScale.x;
+            float paddleLeft = paddleX - paddleLength/2;
+            float paddleRight = paddleX + paddleLength / 2;
+
+
+            ball.linearVelocity = new Vector3(Map(contactX, paddleLeft, paddleRight, -11f, 11f), 4f, 0).normalized * preVolocity.magnitude;
+            
+            
+        }
+
+
+    }
+    public float Map(float value, float oldMin, float oldMax, float newMin, float newMax)
+    {
+        return newMin + (newMax - newMin) * (value - oldMin) / (oldMax - oldMin);
     }
 }

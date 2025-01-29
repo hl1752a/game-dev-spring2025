@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class cameraScript : MonoBehaviour
 {
+    public GameObject paddle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,11 +14,18 @@ public class cameraScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(0, 0, 300f * Time.deltaTime);
+            if (paddle.transform.position.x < 7.5f)
+            {
+                transform.Rotate(0, 0, 360f * Time.deltaTime);
+            }
+                
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(0, 0, -300f * Time.deltaTime);
+            if (paddle.transform.position.x > -7.5f)
+            {
+                transform.Rotate(0, 0, -360f * Time.deltaTime);
+            }
         }
     }
 }
