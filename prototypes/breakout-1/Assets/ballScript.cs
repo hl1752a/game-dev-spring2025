@@ -11,12 +11,16 @@ public class ballScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball.AddForce(5f, -5f, 0, ForceMode.Impulse);
+        ball.linearVelocity = ball.linearVelocity.normalized * 15f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(ball.linearVelocity.magnitude != 10f)
+        {
+            ball.linearVelocity = ball.linearVelocity.normalized * 10f;
+        }
         preVolocity = ball.linearVelocity;
         ball.AddForce(gDir.transform.forward.normalized * 0.15f, ForceMode.Impulse);
     }
