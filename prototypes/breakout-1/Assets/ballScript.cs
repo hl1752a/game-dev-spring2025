@@ -6,6 +6,7 @@ public class ballScript : MonoBehaviour
     public Vector3 preVolocity;
 
     public GameObject gDir;
+    public ParticleSystem expl;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +26,7 @@ public class ballScript : MonoBehaviour
         if (collision.gameObject.CompareTag("brick"))
         {
             Destroy(collision.gameObject);
+            Instantiate(expl, collision.gameObject.transform.position,new Quaternion(0,0,0,0));
         }
 
         if (collision.gameObject.CompareTag("paddle"))
