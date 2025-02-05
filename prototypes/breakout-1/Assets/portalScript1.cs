@@ -8,7 +8,7 @@ public class portalScript1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -19,10 +19,14 @@ public class portalScript1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        ball.transform.position = otherPortal.transform.position + new Vector3(0, -1.5f, 0);
-        if (ball.preVolocity.y > 0)
+        if (collision.gameObject.CompareTag("ball"))
         {
-            ball.ball.linearVelocity = new Vector3(ball.preVolocity.x, -ball.preVolocity.y, 0);
+            ball.transform.position = otherPortal.transform.position + new Vector3(0, -1.5f, 0);
+            if (ball.preVolocity.y > 0)
+            {
+                ball.ball.linearVelocity = new Vector3(ball.preVolocity.x, -ball.preVolocity.y, 0);
+            }
         }
+            
     }
 }

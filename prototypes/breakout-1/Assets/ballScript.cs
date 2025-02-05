@@ -5,13 +5,11 @@ public class ballScript : MonoBehaviour
     public Rigidbody ball;
     public Vector3 preVolocity;
 
-    public GameObject gDir;
-    public ParticleSystem expl;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball.linearVelocity = ball.linearVelocity.normalized * 15f;
+        ball.AddForce(5f, 5f, 0, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -22,16 +20,11 @@ public class ballScript : MonoBehaviour
             ball.linearVelocity = ball.linearVelocity.normalized * 10f;
         }
         preVolocity = ball.linearVelocity;
-        ball.AddForce(gDir.transform.forward.normalized * 0.15f, ForceMode.Impulse);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("brick"))
-        {
-            Destroy(collision.gameObject);
-            Instantiate(expl, collision.gameObject.transform.position,new Quaternion(0,0,0,0));
-        }
 
         if (collision.gameObject.CompareTag("paddle"))
         {
@@ -46,9 +39,16 @@ public class ballScript : MonoBehaviour
             
             
         }
-
-
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("fail"))
+        {
+            ball.transform.position = new Vector3(0, -6.5f, 0);
+        }
+    }
+
     public float Map(float value, float oldMin, float oldMax, float newMin, float newMax)
     {
         return newMin + (newMax - newMin) * (value - oldMin) / (oldMax - oldMin);
