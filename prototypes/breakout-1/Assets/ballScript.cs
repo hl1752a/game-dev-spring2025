@@ -5,11 +5,10 @@ public class ballScript : MonoBehaviour
     public Rigidbody ball;
     public Vector3 preVolocity;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball.AddForce(5f, 5f, 0, ForceMode.Impulse);
+        ball.AddForce(5f, -5f, 0, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -20,7 +19,6 @@ public class ballScript : MonoBehaviour
             ball.linearVelocity = ball.linearVelocity.normalized * 10f;
         }
         preVolocity = ball.linearVelocity;
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,4 +51,6 @@ public class ballScript : MonoBehaviour
     {
         return newMin + (newMax - newMin) * (value - oldMin) / (oldMax - oldMin);
     }
+
 }
+

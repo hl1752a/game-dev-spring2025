@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using TMPro;
 
 public class managerScript : MonoBehaviour
 {
@@ -13,6 +13,10 @@ public class managerScript : MonoBehaviour
     public float effect2;
     public float effect3;
 
+    public TMP_Text timer1;
+    public TMP_Text timer2;
+    public TMP_Text timer3;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +27,12 @@ public class managerScript : MonoBehaviour
         portal.GetComponent<BoxCollider>().enabled = false;
         portal1.GetComponent<MeshRenderer>().enabled = false;
         portal1.GetComponent<BoxCollider>().enabled = false;
+
+        timer1.GetComponent<CanvasRenderer>().SetAlpha(0f);
+        timer2.GetComponent<CanvasRenderer>().SetAlpha(0f);
+        timer3.GetComponent<CanvasRenderer>().SetAlpha(0f);
+
+
     }
 
     // Update is called once per frame
@@ -34,12 +44,15 @@ public class managerScript : MonoBehaviour
             gDir.GetComponent<MeshRenderer>().enabled = true;
             ball.GetComponent<gravityScript>().enabled = true;
             effect1 -= Time.deltaTime;
+            timer1.GetComponent<CanvasRenderer>().SetAlpha(255f);
+            timer1.text = string.Format("gravity control: " + effect1);
         }
         else
         {
             ball.GetComponent<gravityScript>().enabled = false;
             gDir.GetComponent<MeshRenderer>().enabled = false;
             effect1 = 0f;
+            timer1.GetComponent<CanvasRenderer>().SetAlpha(0f);
         }
 
         //effect 2 timer
@@ -47,11 +60,14 @@ public class managerScript : MonoBehaviour
         {
             effect2 -= Time.deltaTime;
             Cam.GetComponent<cameraScript>().enabled = true;
+            timer2.GetComponent<CanvasRenderer>().SetAlpha(255f);
+            timer2.text = string.Format("camera rotate: " + effect2);
         }
         else
         {
             effect2 = 0f;
             Cam.GetComponent<cameraScript>().enabled = false;
+            timer2.GetComponent<CanvasRenderer>().SetAlpha(0f);
         }
 
         //effect 3 timer
@@ -62,6 +78,8 @@ public class managerScript : MonoBehaviour
             portal1.GetComponent<MeshRenderer>().enabled = true;
             portal1.GetComponent<BoxCollider>().enabled = true;
             effect3 -= Time.deltaTime;
+            timer3.GetComponent<CanvasRenderer>().SetAlpha(255f);
+            timer3.text = string.Format("portal: " + effect3);
         }
         else
         {
@@ -70,6 +88,7 @@ public class managerScript : MonoBehaviour
             portal.GetComponent<BoxCollider>().enabled = false;
             portal1.GetComponent<MeshRenderer>().enabled = false;
             portal1.GetComponent<BoxCollider>().enabled = false;
+            timer3.GetComponent<CanvasRenderer>().SetAlpha(0f);
         }
 
     }
