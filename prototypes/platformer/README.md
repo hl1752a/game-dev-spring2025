@@ -1,58 +1,36 @@
 reflaction
 ======
-### breakout-1
+### platformer-1
 
-1. In this version, I made a basic breakout game. I mainly learned the simple physics system in Unity and the uses of Collider, for example, the ball should break bricks instead of walls. 
+1. This is a very basic version, used to test the basic functions of platformimg 
 
-2. I also added an idea of ​​mine, that is, the player will rotate the camera while controlling the paddle to make the control more difficult.
+2. I first wanted to use the character controller to control the character, but I then found that the collider didn't work. I later learned that the character controller can't be used in 2D 
+
+3. I'm trying to use a box collider to simulate the isgrounded effect in the character controller. This works, but as long as the character is touching the platform, it will be considered as standing on the platform, even if the character is underneath the ground. I solved this problem by using the height contrast between the character and the platform.
+
+4. Coins will be "collected" when touched, but there will be no changes in this version, just functional testing
 
 ![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/1.jpg)
 
-[Play Breakout Prototype-1](https://hl1752a.github.io/game-dev-spring2025/builds/breakout-1/)
+[Play platformer-1](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-1)
 
 
 
-### breakout-2a&2b
 
-1. I tried to add more mechanics in this version: portals and gravity. In practice, I finished 2b first and then 2a, which removed the camera rotation to make it easier.
+### platformer-final
 
-2. I learned how to change the direction of the force and make the gravity always point downwards. At the same time, I also learned how to use animators to make the portal move back and forth forever.
+1. I added animations to the character so that he can walk, jump, and attack.
 
-3. In earlier versions, gravity would slow the ball down and eventually stop it from bouncing. This allowed testers to make the ball never fall. I later fixed this by making the ball's speed always constant in the script.
-   
-4. In the playtest, testers generally felt that version 2b was too difficult and uninteresting. While the simple version 2a made testers feel that the mechanism was very interesting.
+2. I added health bar and fall damage, and there will be screen effects when the player is dying. Hearts on the map can restore health for players
 
-![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/2a.jpg)
-![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/2b.jpg)
+3. I added a UI that can display the number of collected coins
 
-[Play Breakout Prototype-2a](https://hl1752a.github.io/game-dev-spring2025/builds/breakout-2a/)
-[Play Breakout Prototype-2a](https://hl1752a.github.io/game-dev-spring2025/builds/breakout-3a/)
+4. I added a rotating platform that was not easy to pass, and I made the character teleport to the starting point when he fell
 
-
-### breakout-3
-
-1. In this version, I no longer make my "creations" accessible from the beginning. I made them random drops after destroying bricks.
-
-2. I wanted to change the color of the falling effect ball over time, so I wasted a lot of time writing scripts. But in the end I realized that animators can easily achieve color changes.
-
-3. Each effect is temporary, so I had to create 3 timers separately. I learned that I can use an empty object as a game manager to manage different timers.
-
-4. Feedback from playertests indicated that this change made the game more interesting, because the effects dropped randomly. However, testers also reported that they had no way of knowing the current effects and their remaining time.
-
-![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/3.jpg)
-
-[Play Breakout Prototype-3](https://hl1752a.github.io/game-dev-spring2025/builds/breakout-3/)
-
-
-
-### breakout-final
-
-1. In the final version, I added a UI to show the current effect and remaining time
-
-2. I don't want to see the UI when there is no effect. I tried to modify the renderer at first but failed, it seems that TextMeshPro does not use the meshrenderer. Later I learned that I can directly modify the alpha value of the text to make them transparent and thus hidden.
+5. At the end of the level I added an enemy, which also has animations and can normally injure and be killed by the player.
 
 
 ![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/fin.jpg)
 
-[Play Breakout Prototype-final](https://hl1752a.github.io/game-dev-spring2025/builds/breakout-final/)
+[Play platformer-1](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-final)
 
