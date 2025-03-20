@@ -32,5 +32,5 @@ reflaction
 
 ![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/platformer-final.png)
 
-[Play platformer-1](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-final)
+[Play platformer-final](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-final)
 
