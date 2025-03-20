@@ -19,6 +19,7 @@ public class coinScrpt : MonoBehaviour
         if (collision.gameObject.CompareTag("player"))
         {
             Destroy(gameObject);
+            Debug.Log("score+1");
         }
     }
 }
