@@ -7,6 +7,9 @@ TagManager:
   - ground
   - coin
   - player
+  - heart
+  - player_attack
+  - enemy
   layers:
   - Default
   - TransparentFX

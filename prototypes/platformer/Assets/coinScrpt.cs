@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class coinScrpt : MonoBehaviour
 {
+    public Score score;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,8 +19,8 @@ public class coinScrpt : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
+            score.addPoint();
             Destroy(gameObject);
-            Debug.Log("score+1");
         }
     }
 }

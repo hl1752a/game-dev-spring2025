@@ -18,7 +18,7 @@ public class animationController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             ren.flipX = false;
-            
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0.6f, -0.14f);
 
             anim.SetBool("isWalk", true);
 
@@ -33,7 +33,7 @@ public class animationController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             ren.flipX = true;
-            
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.6f, -0.14f);
 
             anim.SetBool("isWalk", true);
 
@@ -48,9 +48,17 @@ public class animationController : MonoBehaviour
             anim.SetBool("isAttack", true);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            anim.SetBool("isAttack", false);
-        }
+
+        
+    }
+    public void attackFalse()
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        anim.SetBool("isAttack", false);
+
+    }
+    public void hit()
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
 }
