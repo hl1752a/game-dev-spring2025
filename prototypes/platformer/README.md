@@ -10,7 +10,7 @@ reflaction
 
 4. Coins will be "collected" when touched, but there will be no changes in this version, just functional testing
 
-![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/1.jpg)
+![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/platformer-1.png)
 
 [Play platformer-1](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-1)
 
@@ -30,7 +30,7 @@ reflaction
 5. At the end of the level I added an enemy, which also has animations and can normally injure and be killed by the player.
 
 
-![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/fin.jpg)
+![alt text](https://github.com/hl1752a/game-dev-spring2025/blob/main/img/platformer-final.png)
 
 [Play platformer-1](https://hl1752a.github.io/game-dev-spring2025/builds/platformer-final)
 
