@@ -30,6 +30,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Application.targetFrameRate = 60;
 
         maxHealth = 10;
         health = maxHealth;
