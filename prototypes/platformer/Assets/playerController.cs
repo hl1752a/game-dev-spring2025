@@ -49,7 +49,7 @@ public class playerController : MonoBehaviour
         }
 
         float hAxis = Input.GetAxis("Horizontal");
-        volocity = new Vector2(hAxis * speed * Time.fixedDeltaTime, 0);
+        volocity = new Vector2(hAxis * speed * Time.deltaTime, 0);
 
         if (jump != 0 && Input.GetKeyDown(KeyCode.Space))
         {
