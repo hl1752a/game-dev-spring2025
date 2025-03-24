@@ -46,28 +46,29 @@ public class playerController : MonoBehaviour
             dying.gameObject.transform.localScale = new Vector3(47.8f, 23.09848f, 1);
             health = 10;
             healthBar.SetHealth(maxHealth);
-
         }
 
-
         float hAxis = Input.GetAxis("Horizontal");
-        volocity = new Vector2(hAxis * speed * Time.deltaTime, 0);
-        
-        if(jump != 0 && Input.GetKeyDown(KeyCode.Space))
+        volocity = new Vector2(hAxis * speed * Time.fixedDeltaTime, 0);
+
+        if (jump != 0 && Input.GetKeyDown(KeyCode.Space))
         {
             yVolovity = jumpHeight;
             jump -= 1;
             jumpPos = gameObject.transform.position.y;
-            
         }
-        
-        if(isGrounded == false)
+
+        if (isGrounded == false)
         {
             yVolovity += -9.81f * Time.deltaTime;
         }
-        
-        volocity.y += yVolovity;
 
+        volocity.y += yVolovity;
+    }
+
+
+    void FixedUpdate()
+    {
         rb.linearVelocity = volocity;
     }
 
