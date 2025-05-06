@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Green outline gradient_0: -3866848330692491477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -119,6 +119,21 @@ public class playerController : MonoBehaviour
                 }
             }  
         }
+        else if (collision.gameObject.CompareTag("trap"))
+        {
+            if (invincible == false)
+            {
+                invincible = true;
+                int damage = 2;
+                health -= damage;
+                healthBar.SetHealth(health);
+                StartCoroutine(HitFlash());
+                for (int i = 0; i <= damage; i++)
+                {
+                    dying.gameObject.transform.localScale *= -0.9f;
+                }
+            }
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

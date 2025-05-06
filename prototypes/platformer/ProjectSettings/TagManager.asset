@@ -10,6 +10,8 @@ TagManager:
   - heart
   - player_attack
   - enemy
+  - trap
+  - trap_trigger
   layers:
   - Default
   - TransparentFX
