@@ -35,6 +35,8 @@ public class DialogueManager : MonoBehaviour
 		// as strings.
 		//
 		// scc.setGameStateValue("playerWearing", "equals", "Green shirt");
+		scc.setGameStateValue("talkedToAll", "equals", 0);
+		scc.setGameStateValue("moneyLoaned", "equals", 0);
 	}
 	
 	public void talk(string target)
@@ -43,6 +45,25 @@ public class DialogueManager : MonoBehaviour
 		GameManager.instance.DisplayDialogue(target, line);
 	}
 
+	public void talkedToAll()
+    {
+		scc.setGameStateValue("talkedToAll", "equals", 1);
+	}
+	public void setMoneyLoaned()
+    {
+		scc.setGameStateValue("moneyLoaned", "equals", 1);
+		scc.setGameStateValue("talkedToAll", "equals", 0);
+	}
+	public void pay(string target)
+    {
+		scc.setGameStateValue("hasMoney"+target, "equals", 1);
+	}
+	public void allClear()
+    {
+		scc.setGameStateValue("allClear", "equals", 1);
+		scc.setGameStateValue("moneyLoaned", "equals", 0);
+		scc.setGameStateValue("talkedToAll", "equals", 0);
+	}
 	// Update is called once per frame
 	void Update()
 	{
@@ -55,6 +76,7 @@ public class DialogueManager : MonoBehaviour
 		// An example of modifying the state outside of the DialogueManager (e.g. you could put this in some
 		// OnTriggerEnter or something)
 		if (Input.GetKeyDown(KeyCode.G)) {
+
 			//scc.setGameStateValue("playerWearing", "equals", "Green shirt");
 			//Debug.Log("Emma puts on a green shirt.");
 		}

@@ -8,10 +8,15 @@ public class PlatformerPlayerController : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     float yVelocity = 0;
     float moveSpeed = 12;
-    float jumpForce = 8;  // Increased jump force for better jump height
     float gravity = -19.81f;
 
+    int talkCount = 0;
+    int clearCount = 0;
+    bool hasMoney = false;
+
+    [SerializeField] GameObject targetObject;
     [SerializeField] GameObject DialogueManager;
+    private Animator targetAnm;
     private string target = null;
     [SerializeField] private GameObject dialoguePanel;
 
@@ -73,9 +78,54 @@ public class PlatformerPlayerController : MonoBehaviour
 
         if(target != null)
         {
+            targetObject = GameObject.Find(target);
+            targetAnm = targetObject.GetComponent<Animator>();
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                
+            }
+
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (hasMoney == true)
+                {
+                    targetAnm.SetBool("isOweMoney", false);
+                    DialogueManager.GetComponent<DialogueManager>().pay(target);
+                    if (targetObject.GetComponent<peopleScript>().isClear == false)
+                    {
+                        targetObject.GetComponent<peopleScript>().isClear = true;
+                        clearCount += 1;
+                    }
+                }
+
+
                 DialogueManager.GetComponent<DialogueManager>().talk(target);
+
+                if (targetObject.name == "White")
+                {
+                    if(talkCount >= 4)
+                    {
+                        DialogueManager.GetComponent<DialogueManager>().setMoneyLoaned();
+                        hasMoney = true;
+                        targetAnm.SetBool("isOweMoney", true);
+                    }
+                    if(clearCount >= 3)
+                    {
+                        DialogueManager.GetComponent<DialogueManager>().allClear();
+                    }
+                }
+                if (targetObject.GetComponent<peopleScript>().isTalked == false)
+                {
+                    talkCount += 1;
+                    targetObject.GetComponent<peopleScript>().isTalked = true;
+                }
+                if (talkCount >= 4)
+                {
+                    DialogueManager.GetComponent<DialogueManager>().talkedToAll();
+                }
+
             }
         }
         
@@ -83,10 +133,13 @@ public class PlatformerPlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         target = other.name;
+        other.GetComponent<peopleScript>().talk();
+
     }
     private void OnTriggerExit(Collider other)
     {
         target = null;
         dialoguePanel.SetActive(false);
+        other.GetComponent<peopleScript>().leave();      
     }
 }
